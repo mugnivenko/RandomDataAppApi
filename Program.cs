@@ -1,19 +1,29 @@
+using RandomDataAppApi.Services;
+using RandomDataAppApi.Models;
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy(name: MyAllowSpecificOrigins,
-                    policy =>
-                    {
-                      policy.WithOrigins("*");
-                    });
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:5028")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header");
+        });
 });
 
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<RandomDataService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,8 +33,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseCors(MyAllowSpecificOrigins);

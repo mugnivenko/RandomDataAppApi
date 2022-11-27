@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "~/dotnet/dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        "${workspaceFolder}/RandomDataAppApi.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "command": "~/dotnet/dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "${workspaceFolder}/RandomDataAppApi.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "~/dotnet/dotnet",
+      "type": "shell",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/RandomDataAppApi.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

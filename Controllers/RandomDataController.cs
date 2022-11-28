@@ -11,7 +11,7 @@ using System.Text;
 namespace RandomDataAppApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class RandomDataController : ControllerBase
 {
     private readonly RandomDataService _randomDataService;
